@@ -21,7 +21,7 @@ function App() {
       <button
         style={{ backgroundColor: btnColor }}
         onClick={() => setBtnColor(newBtnColor)}
-        // for bonus
+        // below attribute is for bonus
         disabled={disabled}
       >
         Change to {newBtnColor}

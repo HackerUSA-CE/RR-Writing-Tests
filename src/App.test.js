@@ -24,7 +24,6 @@ test("button changes color when clicked", () => {
   expect(colorBtn.textContent).toBe("Change to green")
 })
 
-// below code is for bonus
 // checks the initial conditions, that the button is enabled and the checkbox is not checked 
 test("initial conditions of button and checkbox", () => {
   render(<App />);
@@ -52,11 +51,11 @@ test("checkbox disables button on first click and enables on second click", () =
   expect(colorBtn).toBeEnabled()
 })
 
-// checks that "Button is enabled" initially appears in paragraphEl, then when checkbox is clicked, the text "Button is disabled" appears, and when checkbox is clicked again, the text "Button is enabled" appears
+// checks that "Button is enabled" initially appears in paragraphEl, then when checkbox is clicked, the text "Button is disabled" appears, 
+// and when checkbox is clicked again, the text "Button is enabled" appears
 test("correct text appears when button is disabled or enabled", () => {
   render(<App />)
 
-  const colorBtn = screen.getByRole("button")
   const checkbox = screen.getByRole("checkbox")
   const paragraphEl = screen.getByRole("paragraph")
 

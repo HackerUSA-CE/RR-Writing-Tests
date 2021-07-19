@@ -2,20 +2,15 @@ import { render, screen } from "@testing-library/react"
 import App from './App'
 import userEvent from '@testing-library/user-event'
 
-test('header renders with correct text', () => {
-  render(<App />)
-  const headerEl = screen.getByRole("heading")
-  expect(headerEl.textContent).toBe("Testing Playground")
+describe('test for header', () => {
+  test('header renders with correct text', () => {
+    render(<App />)
+    const headerEl = screen.getByRole("heading")
+    expect(headerEl.textContent).toBe("Testing Playground")
+  })
 })
 
-describe('tests for button', () =>{
-  test("button has initial background color of green", () => {
-    render(<App />)
-  
-    const colorBtn = screen.getByRole("button")
-    expect(colorBtn).toHaveStyle({ backgroundColor: "green" })
-  })
-  
+describe('test for the button', () =>{
   test("button changes color when clicked", () => {
     render(<App />)
     const colorBtn = screen.getByRole("button")
@@ -27,20 +22,6 @@ describe('tests for button', () =>{
   })
 })
 
-describe('initial conditions of button and checkbox', () => {
-  test("button is initially enabled and checkbox is initially not checked", () => {
-    render(<App />);
-  
-    const colorBtn = screen.getByRole("button")
-    // https://github.com/testing-library/jest-dom#tobeenabled
-    expect(colorBtn).toBeEnabled()
-  
-    const checkbox = screen.getByRole("checkbox")
-    // https://github.com/testing-library/jest-dom#tobechecked, note that the assertion is checking that the checkbox is not checked
-    expect(checkbox).not.toBeChecked()
-  })
-})
-
 describe('tests related to checkbox and enabling/disabling button', () => {
   test("checkbox disables button when first clicked, then enables button on second click", () => {
     render(<App />)
@@ -48,13 +29,13 @@ describe('tests related to checkbox and enabling/disabling button', () => {
     const checkbox = screen.getByRole("checkbox")
   
     userEvent.click(checkbox)
-    // https://github.com/testing-library/jest-dom#tobedisabled
     expect(colorBtn).toBeDisabled()
   
     userEvent.click(checkbox)
     expect(colorBtn).toBeEnabled()
   })
-  
+
+  // Below test is for part 5
   test("accurate text appears when button is enabled or disabled", () => {
     render(<App />)
     const checkbox = screen.getByRole("checkbox")
@@ -67,5 +48,25 @@ describe('tests related to checkbox and enabling/disabling button', () => {
   
     userEvent.click(checkbox)
     expect(paragraphEl.textContent).toBe("Button is enabled")
+  })
+  // End test for part 5
+})
+
+// Below is for the Bonus
+describe('initial conditions', () => {
+  test("button has initial background color of green", () => {
+    render(<App />)
+  
+    const colorBtn = screen.getByRole("button")
+    expect(colorBtn).toHaveStyle({ backgroundColor: "green" })
+  })
+  test("button is initially enabled and checkbox is initially not checked", () => {
+    render(<App />);
+  
+    const colorBtn = screen.getByRole("button")
+    expect(colorBtn).toBeEnabled()
+  
+    const checkbox = screen.getByRole("checkbox")
+    expect(checkbox).not.toBeChecked()
   })
 })

@@ -18,7 +18,7 @@ describe('test for the button', () =>{
     userEvent.click(colorBtn)
   
     expect(colorBtn).toHaveStyle({ backgroundColor: "blue" })
-    expect(colorBtn.textContent).toBe("Change to green")
+    expect(colorBtn.textContent).toBe("Change button color to green")
   })
 })
 
@@ -53,19 +53,11 @@ describe('tests related to checkbox and enabling/disabling button', () => {
 })
 
 // Below is for the Bonus
-describe('initial conditions', () => {
-  test("button has initial background color of green", () => {
-    render(<App />)
-  
-    const colorBtn = screen.getByRole("button")
-    expect(colorBtn).toHaveStyle({ backgroundColor: "green" })
-  })
+describe('initial condition', () => {
   test("button is initially enabled and checkbox is initially not checked", () => {
-    render(<App />);
-  
+    render(<App />)
     const colorBtn = screen.getByRole("button")
     expect(colorBtn).toBeEnabled()
-  
     const checkbox = screen.getByRole("checkbox")
     expect(checkbox).not.toBeChecked()
   })

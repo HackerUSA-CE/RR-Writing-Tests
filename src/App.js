@@ -3,32 +3,33 @@ import { useState } from "react"
 
 function App() {
   const [btnColor, setBtnColor] = useState("green")
-  const newBtnColor = btnColor === "green" ? "blue" : "green"
-  const [disabled, setDisabled] = useState(false)
+  const newBtnColor = btnColor === "blue" ? "green" : "blue"
+  const [inputDisabled, setInputDisabled] = useState(false)
   // Below two lines are for part 5
-  const [initialText, setInitialText] = useState("Button is disabled")
-  const newText = initialText === "Button is enabled" ? "Button is disabled" : "Button is enabled"
+  const [buttonStatus, setButtonStatus] = useState("Button is disabled")
+  const newButtonStatus = buttonStatus === "Button is enabled" ? "Button is disabled" : "Button is enabled"
 
   return (
     <div className="App">
       <h1>Testing Playground</h1>
+      {/* Below line is for part 5 */}
+      <p role="paragraph">{newButtonStatus}</p>
+
       <button
         style={{ backgroundColor: btnColor }}
         onClick={() => setBtnColor(newBtnColor)}
-        disabled={disabled}
+        disabled={inputDisabled}
       >
-        Change to {newBtnColor}
+        Change button color to {newBtnColor}
       </button>
 
       <input
         type="checkbox"
-        defaultChecked={disabled}
-        onChange={(e) => setDisabled(e.target.checked)}
+        defaultChecked={inputDisabled}
+        onChange={(event) => setInputDisabled(event.target.checked)}
         // Below onClick is for part 5
-        onClick={() => setInitialText(newText)}
+        onClick={() => setButtonStatus(newButtonStatus)}
       />
-      {/* Below line is for part 5 */}
-      <p role="paragraph">{newText}</p>
     </div>
   )
 }
